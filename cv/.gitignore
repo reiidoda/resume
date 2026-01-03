@@ -1,9 +1,26 @@
-output/
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+__MACOSX/
+._*
+
+# LaTeX build artifacts
 *.aux
 *.log
 *.out
 *.toc
-*.fls
-*.fdb_latexmk
 *.synctex.gz
+*.fdb_latexmk
+*.fls
+*.bbl
+*.blg
+*.bcf
+*.run.xml
 *.xdv
+*.lof
+*.lot
+
+# Optional: editor junk
+.vscode/
+.idea/
