@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rei Doda - CV</title>
+    <meta name="description" content="Rei Doda CV. View and download the PDF.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    >
+    <style>
+      :root {
+        color-scheme: only light;
+        --ink: #111111;
+        --muted: #5f5f5f;
+        --accent: #146350;
+        --accent-ink: #f5f6f3;
+        --stroke: #e3e6e2;
+        --shadow: 0 18px 45px rgba(16, 24, 16, 0.14);
+        --surface: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(900px 600px at 12% -12%, rgba(232, 242, 238, 0.9), transparent 60%),
+          radial-gradient(760px 520px at 90% -4%, rgba(232, 238, 245, 0.9), transparent 55%),
+          linear-gradient(180deg, #faf9f7 0%, #f2f2ee 65%, #efefeb 100%);
+        min-height: 100vh;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(transparent 23px, rgba(17, 17, 17, 0.04) 24px),
+          linear-gradient(90deg, transparent 23px, rgba(17, 17, 17, 0.04) 24px);
+        background-size: 24px 24px;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.25;
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+      }
+
+      .wrap {
+        width: min(1020px, 92vw);
+        margin: 0 auto;
+        padding: 64px 0 80px;
+      }
+
+      .hero {
+        display: grid;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .kicker {
+        text-transform: uppercase;
+        letter-spacing: 0.36em;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Fraunces", "Times New Roman", serif;
+        font-size: clamp(2.4rem, 4vw, 3.6rem);
+        font-weight: 600;
+        line-height: 1.05;
+      }
+
+      .subtitle {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        max-width: 60ch;
+        color: var(--muted);
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 18px;
+        border-radius: 999px;
+        border: 1px solid var(--stroke);
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--ink);
+        background: var(--surface);
+        box-shadow: 0 10px 20px rgba(16, 24, 16, 0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .button.primary {
+        background: var(--accent);
+        color: var(--accent-ink);
+        border-color: transparent;
+        box-shadow: 0 14px 28px rgba(20, 99, 80, 0.28);
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 30px rgba(16, 24, 16, 0.16);
+      }
+
+      .viewer {
+        margin-top: 36px;
+        border-radius: 24px;
+        background: var(--surface);
+        border: 1px solid var(--stroke);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .viewer-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        background: #fbfbfb;
+        border-bottom: 1px solid var(--stroke);
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .viewer-bar strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      iframe {
+        width: 100%;
+        height: min(80vh, 980px);
+        border: 0;
+        background: #f4f5f3;
+      }
+
+      .hint {
+        margin-top: 16px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(14px);
+        animation: rise 0.8s ease forwards;
+      }
+
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+
+      .delay-2 {
+        animation-delay: 0.2s;
+      }
+
+      .delay-3 {
+        animation-delay: 0.3s;
+      }
+
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 720px) {
+        .wrap {
+          padding: 52px 0 64px;
+        }
+
+        .actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        iframe {
+          height: 70vh;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+
+        .button {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="wrap">
+        <div class="hero">
+          <div class="kicker reveal">Curriculum Vitae</div>
+          <h1 class="reveal delay-1">Rei Doda</h1>
+          <div class="subtitle reveal delay-2">
+            Software Developer focused on AI and Neuroscience. View the latest
+            PDF or download it directly.
+          </div>
+          <div class="actions reveal delay-3">
+            <a class="button primary" href="rei_doda_cv.pdf" download>Download PDF</a>
+            <a class="button" href="rei_doda_cv.pdf" target="_blank" rel="noopener">Open PDF</a>
+            <a class="button" href="https://github.com/reiidoda/curriculum" target="_blank" rel="noopener">
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="viewer reveal delay-3">
+          <div class="viewer-bar">
+            <span>Latest build</span>
+            <strong>rei_doda_cv.pdf</strong>
+          </div>
+          <iframe src="rei_doda_cv.pdf" title="Rei Doda CV PDF"></iframe>
+        </div>
+
+        <div class="hint reveal delay-3">
+          If the PDF does not render in your browser, use the Download PDF button above.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

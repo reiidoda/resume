@@ -1,0 +1,347 @@
+% Rei Doda — CV
+\documentclass[10pt,a4paper]{article}
+
+% ---------- Geometry ----------
+\usepackage[a4paper,top=18mm,bottom=18mm,left=18mm,right=18mm]{geometry}
+
+% ---------- Fonts ----------
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\else
+  \usepackage{fontspec}
+  \IfFontExistsTF{Inter}{
+    \setmainfont{Inter}[
+      UprightFont = * Regular,
+      BoldFont    = * SemiBold,
+      ItalicFont  = * Italic
+    ]
+  }{
+    \setmainfont{TeX Gyre Heros} % Fallback font
+  }
+\fi
+
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+\definecolor{ink}{HTML}{111111}
+\definecolor{muted}{HTML}{6B6B6B}
+\definecolor{hair}{HTML}{E6E6E6}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ink,
+  urlcolor=ink
+}
+
+% ---------- Spacing / rhythm ----------
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\usepackage{setspace}
+\setstretch{1.05}
+
+% ---------- Lists ----------
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=15pt,itemsep=2.5pt,topsep=2pt}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+\titleformat{\section}
+  {\color{muted}\bfseries\fontsize{10.25pt}{12.5pt}\selectfont}
+  {}{0pt}{\MakeUppercase}
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+
+% ---------- Tables / alignment ----------
+\usepackage{tabularx}
+\usepackage{needspace}
+
+% ---------- Prevent orphan section titles ----------
+\usepackage{etoolbox}
+% Guarantees space for a section title + a few lines after it
+\pretocmd{\section}{\needspace{6\baselineskip}}{}{}
+
+% ---------- Skill chips (transparent square buttons) ----------
+\usepackage{tikz}
+\newcommand{\skill}[1]{%
+  \tikz[baseline=(X.base)]\node[
+    draw=hair,
+    line width=0.35pt,
+    rounded corners=2.2pt,
+    inner xsep=5.5pt,
+    inner ysep=2.25pt,
+    fill=hair,
+    fill opacity=0.18,
+    text opacity=1
+  ] (X) {\fontsize{9.2pt}{11pt}\selectfont\color{ink}#1};%
+}
+% Break-friendly spacing between chips (allows line wrap)
+\newcommand{\skillgap}{\hspace{4pt}\allowbreak}
+
+% ---------- Hairline divider ----------
+\newcommand{\hairline}{%
+  \vspace{6pt}%
+  {\color{hair}\hrule height 0.35pt}%
+  \vspace{10pt}%
+}
+
+% ---------- Typography helpers ----------
+\newcommand{\meta}[1]{{\color{muted}\fontsize{9.4pt}{12pt}\selectfont #1}}
+\newcommand{\smallmeta}[1]{{\color{muted}\fontsize{9.0pt}{11.5pt}\selectfont #1}}
+\newcommand{\roleline}[3]{%
+  \textbf{#1}\hfill{\meta{#2}}\\[-1pt]
+  \smallmeta{#3}%
+}
+\newcommand{\projhead}[1]{\textbf{#1}}
+\newcommand{\projmeta}[1]{\smallmeta{#1}}
+
+% ---------- Left label width (for perfectly aligned blocks) ----------
+\newcommand{\LabelW}{28mm}
+
+% Aligned label-value row
+\newcommand{\kv}[2]{%
+  \begin{tabularx}{\textwidth}{@{}p{\LabelW}X@{}}%
+  \meta{#1} & #2%
+  \end{tabularx}%
+}
+
+% Skill row (raggedright helps chips wrap nicely)
+\newcommand{\skillrow}[2]{%
+  \begin{tabularx}{\textwidth}{@{}p{\LabelW}X@{}}%
+  \meta{#1} & \raggedright #2%
+  \end{tabularx}%
+}
+
+% Optional: reduce widows/orphans even more
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+
+\begin{document}
+\color{ink}
+
+% ===================== HEADER =====================
+{\fontsize{24pt}{28pt}\selectfont\textbf{Rei Doda}}\\[-1pt]
+{\fontsize{12pt}{15pt}\selectfont\color{muted}Software Developer}
+
+\vspace{8pt}
+\meta{Europe (Italy / Albania) \,·\,
+\href{mailto:reidoda@icloud.com}{reidoda@icloud.com} \,·\,
+\href{https://www.linkedin.com/in/rei-doda}{linkedin.com/in/reiidoda} \,·\,
+\href{https://github.com/reiidoda}{github.com/reiidoda}}
+
+\hairline
+
+% ===================== SUMMARY =====================
+\section{Summary}
+Interested in Artificial Intelligence and Neuroscience.
+Experienced with Python, Java, and C/C++, applied AI (RAG, OCR, LLM integration), and full-stack architectures.
+
+\hairline
+
+% ===================== EXPERIENCE =====================
+\section{Experience}
+
+\needspace{8\baselineskip}
+\roleline{Mövenpick Hotel (Accor Group) — IT Officer}{Jul 2023 – Jun 2025}{Durrës, Albania}
+\begin{itemize}
+  \item Built a Human Resources (HR) application for employee management, attendance/leave workflows, approvals, and role-based access.
+  \item Developed a parking payment application with ticket/plate validation, online payments, receipt generation, and administrative reporting.
+  \item Managed enterprise IT infrastructure including servers, networking equipment, POS systems, and workstations.
+  \item Provided cross-department technical support focused on uptime, reliability, and fast resolution.
+  \item Enforced security policies, backups, and compliance aligned with Accor Group standards.
+  \item Performed monitoring, updates, and preventative maintenance to ensure operational continuity.
+\end{itemize}
+
+\needspace{9\baselineskip}
+\roleline{Upnova Group S.r.l — Lead Software Developer}{Oct 2022 – Aug 2024}{Bari, Italy}
+\begin{itemize}
+  \item Led development of AI-powered web applications using Python-based architectures.
+  \item Designed and deployed ML pipelines integrated into backend services and APIs.
+  \item Implemented OCR and NLP workflows for automated document processing and extraction.
+  \item Built RAG-based virtual assistants for intelligent document retrieval and contextual responses.
+  \item Focused on maintainable system design, performance, and production readiness.
+\end{itemize}
+
+\needspace{8\baselineskip}
+\roleline{Genesys Software S.r.l — Software Developer}{Nov 2021 – May 2022}{Bari, Italy}
+\begin{itemize}
+  \item Developed high-performance software in C/C++ with emphasis on algorithmic efficiency and memory control.
+  \item Implemented real-time algorithms (e.g., pathfinding, resource allocation) for system-level operations.
+  \item Integrated low-level modules with broader systems and IoT environments for reliable performance.
+  \item Worked with Boost and OpenCV in performance-critical contexts.
+\end{itemize}
+
+\needspace{8\baselineskip}
+\roleline{Vallefiorita — Software Developer}{Sep 2020 – Jul 2021}{Bari, Italy}
+\begin{itemize}
+  \item Developed machine learning and computer vision models using TensorFlow, PyTorch, and OpenCV.
+  \item Built end-to-end AI pipelines: data acquisition, preprocessing, inference, and deployment.
+  \item Deployed solutions on edge/IoT devices with performance optimization and monitoring integration.
+  \item Collaborated with cross-functional stakeholders to translate requirements into deployable AI features.
+\end{itemize}
+
+\hairline
+
+% ===================== PROJECTS =====================
+\section{Projects}
+
+\needspace{9\baselineskip}
+\projhead{Examen — AI-Powered Examination Platform}\\[-1pt]
+\projmeta{Stack: Angular SSR · Spring Boot · PostgreSQL · Docker · JWT · Flyway}\\
+\projmeta{Repo: \href{https://github.com/reiidoda/examen}{github.com/reiidoda/examen}}
+\begin{itemize}
+  \item Designed and implemented a full-stack platform for AI-assisted examination workflows.
+  \item Built Spring Boot REST APIs secured with JWT-based authentication and authorization.
+  \item Implemented database schema versioning and migrations using Flyway.
+  \item Developed an Angular SSR frontend for structure, performance, and scalability.
+  \item Added API documentation and observability via Swagger/OpenAPI and Actuator-style health checks.
+  \item Containerized services with Docker for reproducible development and deployment.
+\end{itemize}
+
+\needspace{9\baselineskip}
+\projhead{Thinking in Code — AI Knowledge \& Processing Platform}\\[-1pt]
+\projmeta{Stack: FastAPI · Worker pipelines · RAG · Vector search · Docker Compose}\\
+\projmeta{Repo: \href{https://github.com/reiidoda/thinking_in_code}{github.com/reiidoda/thinking\_in\_code}}
+\begin{itemize}
+  \item Designed a modular system for structured knowledge processing and AI-driven content generation.
+  \item Implemented FastAPI services with background workers and job lifecycle/status tracking.
+  \item Built retrieval-augmented generation pipelines with vector search (e.g., Chroma/FAISS).
+  \item Integrated multiple LLM backends (local and hosted) with configurable providers.
+  \item Orchestrated services using Docker Compose for reproducible environments.
+\end{itemize}
+
+\needspace{6\baselineskip}
+\projhead{Battleship Game}\\[-1pt]
+\projmeta{Stack: Java · Gradle · Docker}
+\begin{itemize}
+  \item Implemented a two-player strategy game in Java with clean structure and reproducible execution.
+  \item Containerized the application using Docker for consistent runtime behavior.
+\end{itemize}
+
+\needspace{5\baselineskip}
+\projhead{Hyerun of History}\\[-1pt]
+\projmeta{Stack: C}
+\begin{itemize}
+  \item Developed a text-based adventure game emphasizing control flow, state handling, and logic.
+\end{itemize}
+
+\needspace{5\baselineskip}
+\projhead{Biblioteca Poggiolevante}\\[-1pt]
+\projmeta{Stack: PHP · Web}
+\begin{itemize}
+  \item Built a virtual library system enabling search, browsing, and ordering of books in a college library.
+\end{itemize}
+
+\hairline
+
+% ===================== VOLUNTEERING =====================
+\section{Volunteering}
+
+\needspace{7\baselineskip}
+\roleline{EG Global — Ambassador}{Dec 2021 – Jan 2025}{Worldwide}
+\begin{itemize}
+  \item Supported non-profits and social entrepreneurs through coordination, promotion, and community engagement.
+  \item Contributed to initiatives focused on transparent impact and accessible collaboration.
+\end{itemize}
+
+\needspace{7\baselineskip}
+\roleline{Fondazione Giovanni Paolo II ETS — Student Teacher}{Nov 2021 – May 2024}{Bari, Italy}
+\begin{itemize}
+  \item Taught introductory Python programming with focus on computational thinking and problem-solving.
+  \item Helped students build confidence with code through structured exercises and clear explanations.
+\end{itemize}
+
+\hairline
+
+% ===================== EDUCATION & LANGUAGES =====================
+\section{Education}
+\kv{}{ \textbf{BSc in Computer Science} — University of Bari "Aldo Moro", Bari, Italy }
+
+\section{Languages}
+\kv{}{Albanian (Native) · Italian (Full professional proficiency) · English (Full professional proficiency)}
+
+\hairline
+
+% ===================== SKILLS (Chips) =====================
+\section{Skills}
+
+\skillrow{Languages}{
+  \skill{Python}\skillgap
+  \skill{Java (JDK 25)}\skillgap
+  \skill{TypeScript}\skillgap
+  \skill{C}\skillgap
+  \skill{C++}\skillgap
+  \skill{SQL}
+}
+
+\skillrow{Frontend}{
+  \skill{Angular (SSR)}\skillgap
+  \skill{SCSS}\skillgap
+  \skill{Node.js}\skillgap
+  \skill{npm}
+}
+
+\skillrow{Backend}{
+  \skill{Spring Boot}\skillgap
+  \skill{FastAPI}\skillgap
+  \skill{REST API design}\skillgap
+  \skill{SSE}
+}
+
+\skillrow{Security}{
+  \skill{JWT auth}\skillgap
+  \skill{Authorization}\skillgap
+  \skill{Secure API design}
+}
+
+\skillrow{Databases}{
+  \skill{PostgreSQL}\skillgap
+  \skill{Relational modeling}\skillgap
+  \skill{Flyway migrations}
+}
+
+\skillrow{AI}{
+  \skill{RAG}\skillgap
+  \skill{Vector search}\skillgap
+  \skill{Chroma}\skillgap
+  \skill{FAISS}\skillgap
+  \skill{OCR pipelines}\skillgap
+  \skill{LLM integration}
+}
+
+\skillrow{Async}{
+  \skill{Worker pipelines}\skillgap
+  \skill{Background jobs}\skillgap
+  \skill{Status tracking}\skillgap
+  \skill{Artifact generation}
+}
+
+\skillrow{DevOps}{
+  \skill{Linux}\skillgap
+  \skill{Docker}\skillgap
+  \skill{Docker Compose}\skillgap
+  \skill{Nginx}\skillgap
+  \skill{Bash}
+}
+
+\skillrow{Obs.}{
+  \skill{Swagger/OpenAPI}\skillgap
+  \skill{Spring Actuator}\skillgap
+  \skill{Structured logging}
+}
+
+\skillrow{Soft skills}{
+  \skill{Time management}\skillgap
+  \skill{Communication}\skillgap
+  \skill{Technical leadership}\skillgap
+  \skill{Cross-team collaboration}\skillgap
+  \skill{Mentoring}\skillgap
+  \skill{Teamwork}\skillgap
+  \skill{Problem solving}
+}
+
+\end{document}

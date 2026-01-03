@@ -1,0 +1,65 @@
+name: Build CV (XeLaTeX)
+
+on:
+  push:
+    paths:
+      - "cv/**/*.tex"
+      - "cv/site/**"
+      - ".github/workflows/build-cv.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install TeX Live (XeLaTeX)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-xetex texlive-latex-extra texlive-fonts-recommended
+
+      - name: Build PDF
+        working-directory: cv
+        run: |
+          mkdir -p output
+          xelatex -interaction=nonstopmode -halt-on-error -output-directory=output rei_doda_cv.tex
+          xelatex -interaction=nonstopmode -halt-on-error -output-directory=output rei_doda_cv.tex
+
+      - name: Prepare Pages site
+        working-directory: cv
+        run: |
+          mkdir -p site
+          cp output/rei_doda_cv.pdf site/rei_doda_cv.pdf
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Curriculum
+          path: cv/output/rei_doda_cv.pdf
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: cv/site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
